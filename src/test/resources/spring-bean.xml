@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="businessMessageHandler" class="com.iwjw.kafka.clients.spring.BusinessMessageHandlerTest"/>
+
+    <bean id="kafkaConsumer" class="com.iwjw.kafka.clients.spring.IWKafkaConsumerFactoryBean">
+        <property name="brokerServerList" value="192.168.1.119:9092,192.168.1.119:9093,192.168.1.119:9094"/>
+        <property name="consumerGroupId" value="consumerGroup_test"/>
+        <property name="businessMessageHandler" ref="businessMessageHandler"/>
+        <property name="topics" value="A_testTopic"/>
+    </bean>
+
+    <bean id="IWKafkaProducer" class="com.iwjw.kafka.clients.spring.IWKafkaProducerFactoryBean">
+        <property name="brokerServerList" value="192.168.1.119:9092,192.168.1.119:9093,192.168.1.119:9094"/>
+    </bean>
+
+</beans>
